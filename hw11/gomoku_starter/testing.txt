@@ -1,0 +1,28 @@
+testing functions:
+
+Class Board:
+1. display_board()
+The result should return a nested list 
+
+Class GameController:
+1. count_score function(self, board):
+This function should return the winner of the game, or show the game is a tie
+
+2. check_rol()
+This function should return a boolean value showing whether the same color stone in a row is more than or equal to 5
+
+3. check_col()
+This function should return a boolean value showing whether the same color stone in a col is more than or equal to 5
+
+4. check_diagnal()
+This function should return a boolean value showing whether the same color stone in a diagnal line is more than or equal to 5
+
+5. check_position()
+This function should return a boolean value showing whether the click is inside the board or not
+
+6. choose_dir()
+This function should return the best coordinate for AI to move
+
+Class Move:
+1. check_move()
+This function should return a boolean value showing whther the move is valid or not

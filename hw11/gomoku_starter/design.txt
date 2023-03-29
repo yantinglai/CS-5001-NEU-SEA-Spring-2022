@@ -1,0 +1,216 @@
+Pseudocode of Gomoku:
+- Data Structure: List of List to simulate the 8 * 8 board in the real game
+- Classes: Board, Player, Stone, GameController, Movement ## After reading HW12, I realize we better implement the Movement Class as well
+- gomoku_starter.pyde 
+
+rows =  15
+cols = 15
+WIDTH = 600
+HEIGHT = 600
+SPACING = WIDTH / rows 
+white_flag = True
+TURN = 2   # Human always start first and the stone color is black
+
+# class Board:
+       
+
+         def __init___(self, ros, cols):
+                   self.board = [[]]
+ 
+         def draw_board(self):
+                    background(155,122,31)  # board color
+         	          stroke(0)  # stroke color of the line
+		strokeWeight(5)
+		x = (WIDTH / rows) // 2
+		y = (HEIGHT / cols) // 2
+		while x < HEIGHT: 
+			line(x,y,x, HEIGHT - y)
+			x += SPACING
+		x = (WIDTH / rows) // 2
+		y = (HEIGHT / cols) // 2
+		while y < WIDTH: 
+			line(x,y,WIDTH - x, y)
+			y += SPACING
+
+	def display_board(self):
+		self.board = [[for i in range(rows)] for j in range(cols)]
+
+# class Player:
+from board import Board
+	def __init__(self):
+		self.board = Board(rows, cols)
+		self.AI = AI
+		self.human = human
+
+# class Move:
+	board = Board(ROWS, COLS)
+
+	def is_player_turn(self):
+		if TURN == 2: 
+			human's turn
+		elif TURN == 1:
+			call computer_make_move()
+
+	def player_make_move(self):
+		call check_move()
+		record the valid coordinate
+		
+
+	def computer_make_move(self, x, y):
+		compare scores of different directions
+		return the coordinates with the best score
+
+	def check_move(self):
+		check if the player move is valid
+			if yes:
+				return the coordinate
+			else:
+				return -1
+
+
+from board import Board
+from player import Player
+from stone import Stone
+
+# class GameController:
+
+	def __init__(self, gc):
+		self.gc = gc
+
+	x = mouseY // rows
+	y = mouseX // cols
+	def check_position(self, board, x, y ):
+		if MouseClick is not on the board:
+			return
+		elif: MouseClick is on the board and determine the up, down, left and right of a chess piece
+			directions = [[(-1, 0), (1, 0)], [(0, -1), (0, 1)], [(-1, 1),
+               				 (1, -1)], [(-1, -1), (1, 1)]]
+
+	def choose_dir(self, board, x,y):
+		computer always choose the blank space
+		return the coordinate to put the stone
+
+	def check_row(self, board):
+		# check rows
+		for i in range(col):
+			if number of same stone color >= 5:
+				return True
+			elif:
+				break
+
+	def check_cols(self, board):
+		# check rows
+		for i in range(rows):
+			if number of same stone color >= 5:
+				return True
+			elif:
+				break
+	
+	def check_diagnal_dir(self, coor): 
+		# check the diagnal location
+		list = []
+		return diagnal direction's coordinate
+	
+
+	def count_score(self, board):
+		white = 0
+		black = 0
+		count = 0
+		for i in range(rows):
+        			for j in range(cols):
+            			if board[i][j] == 1:
+                			white += 1
+                			count += 1
+            		elif board[i][j] == 2:
+                			black += 1
+                			count += 1
+		# save score to file
+		return Black and White score 
+
+
+	def display_board(self, board):
+		return copy of board
+
+	def update_game(self)：
+		compare the score of white and black:
+		if white>black:
+			text: white wins!
+		elif: white < black:
+			text: black wins!
+		else:
+			text: "It's a fair draw"
+
+from board import Board
+# class Stone:
+	WIDTH = 600
+	HEIGHT = 600
+	rows = 8
+	cols = 8
+	SPACING = WIDTH / rows
+	D = SPACING - 10
+	H = 0.5
+	def __init__(self ):
+		self.stone = stone
+
+	def drawStone(self):
+		for i in range(rows):
+			for j in range(cols):
+				compare coordinates:
+				if it is not filled with any color:
+					put black color stone
+				elif:
+					put white color stone
+
+
+### gomoku_starter.py ##
+from board import Board
+from player import Player
+from stone import Stone
+from gamecontroller import GameController
+
+def setup():
+	board = Board()
+	stone = Stone()
+	player = Player()
+
+def mousePressed():
+	white_flag = True
+	drawStone()
+	redraw()
+
+def draw():
+	board.draw_board()
+	board.display_board()
+	player.count_score()
+
+-----
+Previous Thoughts ..
+* Game Controller:
+- def __init__: initialize the ai, human, board, stone, background
+- def endGame: when the board is filled but have no 5 consecutive stones in the same color, it is a fair draw; 
+   otherwise choose the winner from AI and the human
+- set stone: set up the initial position of where AI will place the stone
+- random coordinates: generate a random coordinate for the AI to place its stone
+- same location: determine whether the AI is putting the stone in the same coordinates as the human
+- When the user will make a move: the human will always be the one who makes a move  *** ( most important concept)
+- When does the AI start to calculate: the AI will start the calculation when the human finishes the step ***
+
+* AI: 
+- init: initilize the AI class
+- update: calculate the next move
+- choose coordinate: score coordinates and return the best coordinates to place the stone
+- evaluation: juedge whether the current placement can have winner
+
+* Player
+- init: create two instances: the human and the AI instances
+- update: update the player's state
+- next_step: define where to put the next stone for human and the AI
+- display: display the position of the stone
+
+* Stone
+- init: initialize the stone
+- display: draw the stone shape, color, and lines, return the stone coordinates
+
+* Board 
+- init: initialize the background color, the size of the board
+- line: draw the line in the board with imported parameters
